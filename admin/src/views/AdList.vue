@@ -1,16 +1,15 @@
 <template>
   <div id="list">
-    <h1>分类列表</h1>
+    <h1>广告列表</h1>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="240"></el-table-column>
-      <el-table-column prop="name" label="分类名称"></el-table-column>
-      <el-table-column prop="parent.name" label="上级"></el-table-column>
+      <el-table-column prop="name" label="名称"></el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
           <el-button
             type="text"
             size="small"
-            @click="$router.push(`/categories/edit/${scope.row._id}`)"
+            @click="$router.push(`/ads/edit/${scope.row._id}`)"
             >编辑</el-button
           >
           <el-button type="text" size="small" @click="remove(scope.row)">删除</el-button>
@@ -23,7 +22,7 @@
 <script>
 
 export default {
-  name: "AdminUserList",
+  name: "CategoryList",
   data() {
     return {
       items: [],
@@ -32,7 +31,7 @@ export default {
   methods: {
     // 获取列表数据并展示方法
     async fetch() {
-      const res = await this.$http.get("rest/categories");
+      const res = await this.$http.get("rest/ads");
       this.items = res.data;
     },
     // 删除按钮方法
@@ -44,7 +43,7 @@ export default {
         type: "warning",
       })
         .then(async () => {
-          const res = await this.$http.delete(`rest/categories/${row._id}`)
+          const res = await this.$http.delete(`rest/ads/${row._id}`)
           this.$message({
             type: "success",
             message: "删除成功!",
