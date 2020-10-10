@@ -7,6 +7,7 @@
       </el-form-item>
       <el-form-item label="图标">
         <el-upload
+          :headers="getAuthHeadersMixin()"
           class="avatar-uploader"
           :action="$http.defaults.baseURL + '/upload'"
           :show-file-list="false"
