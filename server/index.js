@@ -3,6 +3,8 @@ const express = require('express')
 // 使用框架创建web服务器
 const app = express()
 
+app.set('secret','aasedwef')
+
 app.use(express.json())
 app.use(require('cors')())
 // 托管静态文件，让uploads文件夹下的所有静态文件可以通过/uploads访问
