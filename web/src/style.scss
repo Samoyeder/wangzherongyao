@@ -1,0 +1,172 @@
+// reset
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.2rem;
+  background-color: #f1f1f1;
+}
+
+a {
+  color: #999;
+}
+
+// colors
+$colors:("a-active-y":#db9e3f,
+  "a-active-r":#ff3636,
+  "white":#fff,
+  "black":#000,
+  "primary-font":#222,
+  "h3":#212222,
+  "a-after":#999,
+  "light":#f9f9f9,
+  "category":#343440, );
+
+@each $colorKey,
+$color in $colors {
+  .text-#{$colorKey} {
+    color: $color;
+  }
+
+  .bg-#{colorKey} {
+    color: $color;
+  }
+}
+
+// text align
+@each $var in (left, center, right) {
+  .text-#{$var} {
+    text-align: $var;
+  }
+}
+
+// font size
+$base-font-size:1rem;
+$font-sizes:( //13px == 1rem
+  //注意这里只是一个倍数，到时候要去乘以$base-font-size，也就是乘以1rem 
+  // 10px
+  xs:0.7692,
+  // 12px
+  sm:0.9231,
+  // 13px
+  md:1,
+  // 14px
+  lg:1.0769,
+  // 16px
+  xl:1.2308,
+);
+
+@each $sizeKey,
+$size in $font-sizes {
+  .fs-#{$sizeKey} {
+    font-size: $size * $base-font-size;
+  }
+}
+
+// flex
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+$flex-jc:( //justify-content
+  start:flex-start,
+  end:flex-end,
+  center:center,
+  between:space-between,
+  around:space-around,
+);
+
+@each $key,
+$val in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $val;
+  }
+}
+
+$flex-ai:( //align-items
+  start:flex-start,
+  end:flex-end,
+  center:center,
+  stretch:stretch,
+);
+
+@each $key,
+$val in $flex-ai {
+  .jc-#{$key} {
+    align-items: $val;
+  }
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+// spacing
+$spacing-types:(m:margin,
+  p:padding,
+);
+$spacing-directions:(t:top,
+  l:left,
+  r:right,
+  b:bottom,
+);
+$spacing-base-size:1rem;
+$spacing-sizes:(0:0,
+  1:0.25,
+  2:0.5,
+  3:1,
+  4:1.5,
+  5:3,
+);
+
+@each $typeKey,
+$type in $spacing-types {
+  .#{$typeKey} {
+    #{$type}: 0;
+  }
+
+  @each $sizeKey,
+  $size in $spacing-sizes {
+
+    // 写成m-1这种形式，表示margin:0.25rem
+    .#{$typeKey}-#{$sizeKey} {
+      #{$type}: $size * $spacing-base-size;
+    }
+
+    // 写成mx-1这种形式，表示margin-left和right:0.25rem(x轴方向上保持一致)
+    .#{$typeKey}x-#{$sizeKey} {
+      #{$type}-left: $size * $spacing-base-size;
+      #{$type}-right: $size * $spacing-base-size;
+    }
+
+    // 写成mxy-1这种形式，表示margin-top和bottom:0.25rem(y轴方向上保持一致)
+    .#{$typeKey}y-#{$sizeKey} {
+      #{$type}-top: $size * $spacing-base-size;
+      #{$type}-bottom: $size * $spacing-base-size;
+    }
+  }
+
+  // 写成mt-1这种形式，表示margin-top:0.25rem
+  @each $directionKey,
+  $direction in $spacing-directions {
+
+    @each $sizeKey,
+    $size in $spacing-sizes {
+
+      .#{$typeKey}#{$directionKey}-#{$sizeKey} {
+        #{$type}-#{$direction}: $size * $spacing-base-size;
+      }
+    }
+  }
+}
