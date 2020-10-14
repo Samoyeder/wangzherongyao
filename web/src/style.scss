@@ -3,15 +3,20 @@
   box-sizing: border-box;
 }
 
+html{
+  font-size: 42.6667px;
+}
 body {
+  overflow-x: hidden;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.2rem;
+
   background-color: #f1f1f1;
 }
 
 a {
   color: #999;
+  text-decoration: none;
 }
 
 // colors
@@ -23,6 +28,7 @@ $colors:("a-active-y":#db9e3f,
   "h3":#212222,
   "a-after":#999,
   "light":#f9f9f9,
+  "t-info":#666666,
   "category":#343440, );
 
 @each $colorKey,
@@ -31,8 +37,8 @@ $color in $colors {
     color: $color;
   }
 
-  .bg-#{colorKey} {
-    color: $color;
+  .bg-#{$colorKey} {
+    background-color: $color;
   }
 }
 
@@ -99,7 +105,7 @@ $flex-ai:( //align-items
 
 @each $key,
 $val in $flex-ai {
-  .jc-#{$key} {
+  .ai-#{$key} {
     align-items: $val;
   }
 }
