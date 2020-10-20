@@ -22,7 +22,7 @@
         <router-link to="/">赛事中心</router-link>
       </div>
     </div>
-  <router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -49,7 +49,7 @@ export default {
 }
 .logo_i {
   font-size: 0.16rem;
-  line-height: .1rem;
+  line-height: 0.1rem;
 }
 .download {
   height: 0.48rem;

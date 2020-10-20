@@ -1,14 +1,14 @@
 <template>
   <div>
-    <swiper ref="mySwiper" :options="swiperOptions" class="swiper">
+    <swiper :options="swiperOptions" class="swiper">
       <swiper-slide>
-        <img src="../assets/img/h1.jpeg" alt="" />
+        <img src="../../../assets/img/h1.jpeg" alt="" />
       </swiper-slide>
       <swiper-slide>
-        <img src="../assets/img/h2.jpeg" alt="" />
+        <img src="../../../assets/img/h2.jpeg" alt="" />
       </swiper-slide>
       <swiper-slide>
-        <img src="../assets/img/h4.jpeg" alt="" />
+        <img src="../../../assets/img/h4.jpeg" alt="" />
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "Home",
+  name: "HomeSwiper",
   data() {
     return {
       swiperOptions: {
@@ -35,11 +35,11 @@ export default {
       },
     };
   },
-
 };
 </script>
 
 <style lang="scss">
+// swiper
 .swiper img {
   width: 100%;
   height: 100%;
@@ -57,4 +57,5 @@ export default {
     background: #4b67af;
   }
 }
+// end of swiper
 </style>

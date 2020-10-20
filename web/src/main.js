@@ -3,6 +3,8 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
+import './assets/iconfont/iconfont.css'
+
 import './style.scss'
 import router from './router'
 

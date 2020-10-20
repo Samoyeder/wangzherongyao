@@ -1,11 +1,13 @@
 // reset
 * {
   box-sizing: border-box;
+
 }
 
-html{
+html {
   font-size: 42.6667px;
 }
+
 body {
   overflow-x: hidden;
   margin: 0;
@@ -69,6 +71,28 @@ $font-sizes:( //13px == 1rem
 $size in $font-sizes {
   .fs-#{$sizeKey} {
     font-size: $size * $base-font-size;
+  }
+}
+
+// icon
+$icon-types:( // 新闻
+  "new":#1E96AB,
+  // 公告
+  "notice":#f4be19,
+  // 活动
+  "activity":#ff3636,
+  // 热门
+  "hot":#ff3636,
+  // 赛事
+  "match":#4d9cff);
+
+@each $iconKey,
+$icon in $icon-types {
+  .icon-#{$iconKey} {
+    color: $icon;
+    border: 1px solid $icon;
+    border-radius: .05rem;
+    font-size: .2rem;
   }
 }
 
