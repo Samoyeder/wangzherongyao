@@ -7,4 +7,7 @@ module.exports = app => {
     })
     .then(() => console.log('成功连接数据库'))
     .catch(err => console.log('数据库连接失败', err))
+
+  // 将所有模型都引用一遍
+  require('require-all')(__dirname + '/../models')
 }

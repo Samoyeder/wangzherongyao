@@ -21,6 +21,7 @@
       <div class="nav-item">
         <router-link to="/">赛事中心</router-link>
       </div>
+
     </div>
     <router-view></router-view>
   </div>
@@ -36,6 +37,9 @@ export default {
 .topbar {
   height: 0.9rem;
   padding: 0.1rem 0.25rem 0.1rem 0.25rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 .logo {
   width: 0.6rem;

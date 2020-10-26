@@ -92,4 +92,4 @@ const schema = new mongoose.Schema({
 })
 
 // 使用集合规则创建集合，创建的集合叫categories
-module.exports = mongoose.model('Hero', schema)
+module.exports = mongoose.model('Hero', schema, 'heroes')

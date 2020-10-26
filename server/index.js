@@ -10,10 +10,13 @@ app.use(require('cors')())
 // 托管静态文件，让uploads文件夹下的所有静态文件可以通过/uploads访问
 app.use('/uploads', express.static(__dirname + '/uploads'))
 
-// 分类路由文件
+// 后台路由文件
 require('./routers/admin/index')(app)
+// 前端路由文件
+require('./routers/web/index')(app)
 // 连接数据库文件
 require('./plugins/db')(app)
+
 
 // 端口信息
 app.listen(3000,() => {

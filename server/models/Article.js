@@ -14,6 +14,8 @@ const schema = new mongoose.Schema({
   body: {
     type: String
   }
+},{
+  timestamps:true
 })
 
 // 使用集合规则创建集合，创建的集合叫categories

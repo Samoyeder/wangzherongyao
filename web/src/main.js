@@ -12,6 +12,11 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css'
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 
+import axios from 'axios'
+Vue.prototype.$http = axios.create({
+  baseURL:'http://localhost:3000/web/api'
+})
+
 new Vue({
   router,
   render: h => h(App)

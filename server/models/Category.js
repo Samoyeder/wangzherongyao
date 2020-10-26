@@ -12,5 +12,17 @@ const schema = new mongoose.Schema({
   }
 })
 
+schema.virtual('children', {
+  localField:'_id',
+  foreignField:'parent',
+  justOne:false,
+  ref:'Category'
+})
+schema.virtual('newsList', {
+  localField:'_id',
+  foreignField:'categories',
+  justOne:false,
+  ref:'Article'
+})
 // 使用集合规则创建集合，创建的集合叫categories
 module.exports = mongoose.model('Category', schema)

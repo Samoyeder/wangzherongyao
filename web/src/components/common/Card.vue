@@ -13,15 +13,19 @@
           v-for="(item, index) in categories"
           :key="index"
           :class="{ active: currentIndex === index }"
-          @click="currentIndex = index"
+          @click="$refs.list.swiper.slideTo(index)"
         >
           <router-link to="/">{{ item.name }}</router-link>
         </div>
       </div>
       <!-- swiper -->
       <div class="swiper">
-        <swiper :options="swiperOptions">
-          <swiper-slide v-for="(category, index) in categories" :key="index">
+        <swiper
+          :options="swiperOptions"
+          ref="list"
+          @slide-change="slideChange()"
+        >
+          <swiper-slide v-for="(category, index) in categories" :key="index" >
             <slot name="item" :category="category"></slot>
           </swiper-slide>
         </swiper>
@@ -52,12 +56,8 @@ export default {
     return {
       currentIndex: 0,
       swiperOptions: {
-        autoplay: true,
+        autoHeight:true,
         loop: true,
-        autoplay: {
-          delay: 2000,
-          disableOnInteraction: false,
-        },
         pagination: {
           el: ".swiper-pagination",
           type: "bullets",
@@ -66,11 +66,20 @@ export default {
       },
     };
   },
+  methods:{
+    // 将轮播图与导航绑定起来
+    slideChange(){
+      this.currentIndex = this.$refs.list.swiper.realIndex
+      // console.log(this.currentIndex);
+      // console.log(this.$refs.list.swiper.realIndex);
+    }
+  }
 };
 </script>
 
 <style scoped lang="scss">
 .card {
+  margin-top: 0.3rem;
   padding: 0.34rem;
   background-color: #fff;
   .card-header {
