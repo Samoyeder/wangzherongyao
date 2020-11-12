@@ -10,6 +10,10 @@ const schema = new mongoose.Schema({
   avatar: {
     type: String
   },
+  // 英雄壁纸
+  banner:{
+    type:String
+  },
   // 英雄称号（逐日之弓——后裔）
   title: {
     type: String

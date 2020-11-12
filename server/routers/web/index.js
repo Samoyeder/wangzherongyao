@@ -5,6 +5,7 @@ module.exports = app => {
   // const mongoose = require('mongoose')
   const Category = require('../../models/Category')
   const Hero = require('../../models/Hero')
+  const Video = require('../../models/Video')
   // const Article = mongoose.model('Article')
 
 
@@ -595,7 +596,6 @@ module.exports = app => {
   })
 
   // 英雄列表接口
-  // 新闻列表接口
   router.get('/heroes/list', async (req, res) => {
     const parent = await Category.findOne({
       name: 'heroes'
@@ -625,11 +625,65 @@ module.exports = app => {
         }
       }).limit(10).lean()
     })
-    
+
     res.send(cats)
   })
 
+  // 文章接口
+  router.get('/articles/:id', async (req, res) => {
+    const data = await Article.findById(req.params.id).lean()
+    data.related = await Article.find().where({
+      categories: {
+        $in: data.categories
+      }
+    }).limit(2)
 
+    res.send(data)
+  })
+
+  // 英雄接口
+  router.get('/heroes/:id', async (req, res) => {
+    const data = await Hero.findById(req.params.id)
+      // 这时候拿到的分类数据是id，我们要关联分类从而拿到名字
+      .populate('categories')
+      .lean()
+
+    res.send(data)
+  })
+
+  // 首页视频列表接口
+  router.get('/videos/list', async (req, res) => {
+    const parent = await Category.findOne({
+      name: 'videos'
+    })
+    const cats = await Category.aggregate([{
+      $match: {
+        parent: parent._id
+      }
+    },
+    {
+      $lookup: {
+        from: 'videos',
+        localField: '_id',
+        foreignField: 'categories',
+        as: 'videoList'
+      }
+    }
+
+  ])
+
+  res.send(cats)
+  })
+
+  // 首页视频接口
+  router.get('/videos/:id', async (req, res) => {
+    const data = await Video.findById(req.params.id)
+      // 这时候拿到的分类数据是id，我们要关联分类从而拿到名字
+      .populate('categories')
+      .lean()
+
+    res.send(data)
+  })
 
   app.use('/web/api', router)
 

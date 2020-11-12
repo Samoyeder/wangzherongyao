@@ -6,7 +6,7 @@
       :label-position="labelPosition"
       label-width="80px"
     >
-      <el-tabs value="skills" type="border-card">
+      <el-tabs value="basic" type="border-card">
         <el-tab-pane label="基本信息" name="basic">
           <el-form-item label="名称">
             <el-input v-model="model.name"></el-input>
@@ -19,12 +19,27 @@
               class="avatar-uploader"
               :action="$http.defaults.baseURL + '/upload'"
               :show-file-list="false"
-              :on-success="afterUpload"
+              :headers="getAuthHeadersMixin()"
+              :on-success="afterAvatarUpload"
             >
               <img v-if="model.avatar" :src="model.avatar" class="avatar" />
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
           </el-form-item>
+
+          <el-form-item label="壁纸">
+            <el-upload
+              class="avatar-uploader"
+              :action="$http.defaults.baseURL + '/upload'"
+              :headers="getAuthHeadersMixin()"
+              :show-file-list="false"
+              :on-success="afterBannerUpload"
+            >
+              <img v-if="model.banner" :src="model.banner" class="avatar" />
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
+          </el-form-item>
+
           <el-form-item label="类型">
             <el-select v-model="model.categories" multiple>
               <el-option
@@ -162,6 +177,7 @@ export default {
       model: {
         skills: [],
         avatar: "",
+        banner:'',
         name: "",
         scores: {
           difficult: 0,
@@ -173,10 +189,15 @@ export default {
     };
   },
   methods: {
-    afterUpload(res) {
+    afterAvatarUpload(res) {
       // 理论上用this.model.icon = res.url也是可以的，但是因为vue响应式的原因，之前model并没有icon，所以可能会造成赋值不上去，这个时候用$set，显式的告诉vue。
       // this.$set(this.model, 'avatar', res.url)
       this.model.avatar = res.url;
+    },
+    afterBannerUpload(res) {
+      // 理论上用this.model.icon = res.url也是可以的，但是因为vue响应式的原因，之前model并没有icon，所以可能会造成赋值不上去，这个时候用$set，显式的告诉vue。
+      // this.$set(this.model, 'avatar', res.url)
+      this.model.banner = res.url;
     },
     // 将新建的分类提交
     async save() {
@@ -227,6 +248,7 @@ export default {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  
 }
 .avatar-uploader .el-upload:hover {
   border-color: #409eff;
@@ -240,8 +262,9 @@ export default {
   text-align: center;
 }
 .avatar {
-  width: 108px;
-  height: 108px;
+  width: auto;
+  max-height: 130px;
   display: block;
+  
 }
 </style>

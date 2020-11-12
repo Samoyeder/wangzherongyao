@@ -55,7 +55,7 @@ module.exports = app => {
   //为路由对象匹配请求路径
   app.use('/admin/api/rest/:resource', authMiddleware(), resourceMiddleware(), router)
 
-  // 图片上传接口
+  // 图片上传接口-----------
   const multer = require('multer')
   // multer({dest: './uploadImages'})表示将上传的图片传输到指定文件夹（这里以uploadImages为例，如果没有该文件夹，会自动生成）,如果不添加dest属性，这些文件将保存在内存中，永远不会写入磁盘。
   const upload = multer({
@@ -68,6 +68,7 @@ module.exports = app => {
     file.url = `http://localhost:3000/uploads/${file.filename}`
     res.send(file)
   })
+  // ---------------------
 
   // 登录接口
   app.post('/admin/api/login', async (req, res) => {

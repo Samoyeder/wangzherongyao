@@ -8,14 +8,16 @@
     >
       <template v-slot:item="{ category }">
         <div class="d-flex flex-wrap ">
-          <div
+          <router-link
+            tag="div"
+            :to="`/heroes/${hero._id}`"
             class="hero-con"
             v-for="(hero, index) in category.heroList"
             :key="index"
           >
             <img :src="`${hero.avatar}`" class="hero-avatar" />
             <div class="hero-name">{{ hero.name }}</div>
-          </div>
+          </router-link>
         </div>
       </template>
     </card>

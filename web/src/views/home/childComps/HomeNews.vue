@@ -7,7 +7,9 @@
       :categories="newsCats"
     >
       <template v-slot:item="{ category }">
-        <div
+        <router-link
+          tag="div"
+          :to="`/articles/${news._id}`"
           class="new-con"
           v-for="(news, index) in category.newsList"
           :key="index"
@@ -18,7 +20,7 @@
 
           <span class="new-title text-ellipsis">{{ news.title }}</span>
           <span class="new-date">{{ news.createdAt | date }}</span>
-        </div>
+        </router-link>
       </template>
     </card>
   </div>
@@ -26,9 +28,9 @@
 
 <script>
 // 插件
-import dayjs from 'dayjs'
+import dayjs from "dayjs";
 // 公共组件
-import Card from "../../../components/common/Card";
+import Card from "components/common/Card";
 
 export default {
   name: "HomeNews",
