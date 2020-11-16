@@ -1,9 +1,41 @@
 <template>
   <div>
     <div class="nav-icon d-flex">
-      <div class="nav-item" v-for="n in 10" :key="n">
-        <i class="sprite sprite-news"></i>
-        <p>爆料站</p>
+      <div class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="sprite sprite-news"></i>
+          <p>爆料站</p>
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="sprite sprite-stroy"></i>
+          <p>故事站</p>
+          </a>
+      </div>
+      <div class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="sprite sprite-shop"></i>
+          <p>周边商城</p>
+          </a>
+      </div>
+      <div class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="sprite sprite-server"></i>
+          <p>体验服</p>
+          </a>
+      </div>
+      <div class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="sprite sprite-glory"></i>
+          <p>荣耀传承</p>
+          </a>
+      </div>
+      <div class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="sprite sprite-camp"></i>
+          <p>王者营地</p>
+          </a>
       </div>
     </div>
   </div>
@@ -63,28 +95,33 @@ export default {
 // end of sprite
 // nav-icon
 .nav-icon {
-  padding-bottom: .2rem;
+  padding-bottom: 0.2rem;
   background-color: #fff;
   flex-wrap: wrap;
   .nav-item {
+    // background-color: red;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    // align-content: space-around;
     width: 25%;
     border-right: 1px solid #d4d9de;
-    margin-top: .3rem;
-    height: 1rem;
-    &:nth-child(4n){
+    margin-top: 0.3rem;
+    height: 1.2rem;
+    line-height: .6rem;
+    &:nth-child(4n) {
       border: none;
     }
-    i{
-      margin-left: .85rem;
-      // text-align: center;
-    }
-    p {
-      font-size: 0.26rem;
-      margin: 0;
-
+    .nav-link {
+      text-align: center;
+      i {
+        display: inline-block;
+        text-align: center;
+      }
+      p {
+        font-size: 0.26rem;
+        margin: 0;
+      }
     }
   }
 }

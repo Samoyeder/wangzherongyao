@@ -45,7 +45,7 @@ export default {
   height: 0.48rem;
   width: 1.2rem;
   // margin-top: .5rem;
-  font-size: 0.1rem;
+  font-size: 0.26rem;
   color: black;
 
   a {
