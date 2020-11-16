@@ -65,7 +65,7 @@ module.exports = app => {
   // upload.single('user')表示只接收name为user的上传数据
   app.post('/admin/api/upload', authMiddleware(), upload.single('file'), async (req, res) => {
     const file = req.file
-    file.url = `http://localhost:3000/uploads/${file.filename}`
+    file.url = `http://super.samoyeder.cn/uploads/${file.filename}`
     res.send(file)
   })
   // ---------------------
