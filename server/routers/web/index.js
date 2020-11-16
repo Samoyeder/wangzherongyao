@@ -6,6 +6,7 @@ module.exports = app => {
   const Category = require('../../models/Category')
   const Hero = require('../../models/Hero')
   const Video = require('../../models/Video')
+  const Ad = require('../../models/Ad')
   // const Article = mongoose.model('Article')
 
 
@@ -595,6 +596,15 @@ module.exports = app => {
     res.send(await Hero.find())
   })
 
+
+  // 首页幻灯片接口
+  router.get('/ads/list',async(req,res) => {
+    // const ads = await Ad.findById('5fb279bc02ddea41c46b5602').lean()
+    const ads = await Ad.find({
+      name:'首页幻灯片广告'
+    }).lean()
+    res.send(ads)
+  })
   // 英雄列表接口
   router.get('/heroes/list', async (req, res) => {
     const parent = await Category.findOne({

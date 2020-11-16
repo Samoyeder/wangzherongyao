@@ -1,15 +1,19 @@
 <template>
   <div>
-    <swiper :options="swiperOptions" class="swiper">
-      <swiper-slide>
-        <img src="../../../assets/img/h1.jpeg" alt="" />
+    <swiper :options="swiperOptions" class="swiper" v-if="ads[0]">
+      <swiper-slide v-for="(item,index) in ads[0].items" :key="index" >
+        <a :href="item.url">
+        <img :src='item.image' alt="" />
+
+        </a>
+        <!-- <div>{{item}}</div> -->
       </swiper-slide>
-      <swiper-slide>
+      <!-- <swiper-slide>
         <img src="../../../assets/img/h2.jpeg" alt="" />
       </swiper-slide>
       <swiper-slide>
         <img src="../../../assets/img/h4.jpeg" alt="" />
-      </swiper-slide>
+      </swiper-slide> -->
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
   </div>
@@ -20,6 +24,7 @@ export default {
   name: "HomeSwiper",
   data() {
     return {
+      ads:{},
       swiperOptions: {
         autoplay: true,
         loop: true,
@@ -35,6 +40,16 @@ export default {
       },
     };
   },
+  methods:{
+    async fetchAds(){
+      const res = await this.$http.get('ads/list')
+      this.ads = res.data
+    },
+
+  },
+  created(){
+    this.fetchAds()
+  }
 };
 </script>
 
