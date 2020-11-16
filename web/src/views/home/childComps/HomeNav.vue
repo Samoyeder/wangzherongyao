@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="nav-icon d-flex">
+    <div class="nav-icon d-flex" :class="{ open: isOpen }">
       <div class="nav-item">
         <a href="#" class="nav-link">
           <i class="sprite sprite-news"></i>
@@ -11,32 +11,35 @@
         <a href="#" class="nav-link">
           <i class="sprite sprite-stroy"></i>
           <p>故事站</p>
-          </a>
+        </a>
       </div>
       <div class="nav-item">
         <a href="#" class="nav-link">
           <i class="sprite sprite-shop"></i>
           <p>周边商城</p>
-          </a>
+        </a>
       </div>
       <div class="nav-item">
         <a href="#" class="nav-link">
           <i class="sprite sprite-server"></i>
           <p>体验服</p>
-          </a>
+        </a>
       </div>
       <div class="nav-item">
         <a href="#" class="nav-link">
           <i class="sprite sprite-glory"></i>
           <p>荣耀传承</p>
-          </a>
+        </a>
       </div>
       <div class="nav-item">
         <a href="#" class="nav-link">
           <i class="sprite sprite-camp"></i>
           <p>王者营地</p>
-          </a>
+        </a>
       </div>
+    </div>
+    <div class="nav-button" @click="isOpen = !isOpen">
+      <div>{{ isOpen ? "收起" : "展开" }}</div>
     </div>
   </div>
 </template>
@@ -44,6 +47,24 @@
 <script>
 export default {
   name: "HomeNav",
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
+  methods: {
+    // buttonClick() {
+    //   let icon = document.querySelector(".nav-icon");
+    //   let button = document.querySelector(".nav-button");
+    //   if (button.innerHTML === "展开") {
+    //     icon.className = "nav-icon d-flex open";
+    //     button.innerHTML = "收起";
+    //   } else if (button.innerHTML === "收起") {
+    //     icon.className = "nav-icon d-flex ";
+    //     button.innerHTML = "展开";
+    //   }
+    // },
+  },
 };
 </script>
 
@@ -94,10 +115,22 @@ export default {
 }
 // end of sprite
 // nav-icon
+.nav-icon.open {
+  // background-color: red;
+  height: auto;
+  transition: all 0.3s;
+  // overflow: auto;
+}
 .nav-icon {
   padding-bottom: 0.2rem;
   background-color: #fff;
   flex-wrap: wrap;
+  height: 1.7rem;
+  overflow: hidden;
+  // &.active {
+  //   background-color: red;
+
+  // }
   .nav-item {
     // background-color: red;
     display: flex;
@@ -108,7 +141,7 @@ export default {
     border-right: 1px solid #d4d9de;
     margin-top: 0.3rem;
     height: 1.2rem;
-    line-height: .6rem;
+    line-height: 0.6rem;
     &:nth-child(4n) {
       border: none;
     }
@@ -126,4 +159,9 @@ export default {
   }
 }
 // end of nav-icon
+.nav-button {
+  background-color: #f9f9f9;
+  font-size: 0.26rem;
+  line-height: 0.6rem;
+}
 </style>

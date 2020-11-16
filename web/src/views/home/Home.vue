@@ -5,10 +5,6 @@
     <home-news></home-news>
     <home-hero></home-hero>
     <home-video></home-video>
-    <card title="新闻资讯" icon="icon-cc-menu-circle"></card>
-    <card title="新闻资讯" icon="icon-cc-menu-circle"></card>
-    <card title="新闻资讯" icon="icon-cc-menu-circle"></card>
-    <!-- end of new -->
   </div>
 </template>
 
