@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"node-vue-moba.items"}],"uuid":"47e06b49c2d643b48e258d88769a2c54","collectionName":"items"}
